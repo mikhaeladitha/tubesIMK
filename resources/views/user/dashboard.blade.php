@@ -147,24 +147,26 @@
 			</p>
 		</div>
 	</div>
-	<div class="row justify-content-center">
+	<div class="row justify-content-center text-center">
 		@foreach($products as $product)
 		<div class="col-md-3">
 			<div class="menu-entry">
-				<img href="#" class="img" style="width:200px" src="../images/{{$product->gambar}}"></a>
-				<div class="text text-center pt-3">
-					<h3><a href="#">{{$product->nama_produk}}</a></h3>
-					<p>{{$product->description}}</p>
+				<div>
+					<img href="#" class="mx-auto d-block" style="height:200px; width:200px;" src="{{ $product->getGambar() }}">
+				</div>
+				<div class="text pt-3">
+					<h3><a href="#">{{ $product->nama_produk }}</a></h3>
+					<p>{{ $product->description }}</p>
 					<p class="price"><span>@currency($product->harga)</span></p>
 					<p>
 						<!-- Cek apakah produk tersebut sudah ada di ada di database cart atas nama pengguna yg sedang login -->					
-							<button type="submit" name="add" class="btn btn-primary btn-primary" value="Add to cart">Added to Cart</button>					
+						<button type="submit" name="add" class="btn btn-primary btn-primary" value="Add to cart">Added to Cart</button>					
 					</p>
 				</div>
 			</div>
 		</div>
 		@endforeach
-		<a href="" style="text-decoration:underline">Lihat semua produk</a>
+		<a href="" style="text-decoration: none">Lihat semua produk</a>
 	</div>
 </div>
 </section>
