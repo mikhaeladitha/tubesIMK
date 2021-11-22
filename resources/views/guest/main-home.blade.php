@@ -154,11 +154,13 @@
 			@foreach($products as $product)
 			<div class="col-md-3">
 				<div class="menu-entry">
-					<a href="#" class="img" style="background-image: url(images/{{$product->gambar}});"></a>
+					<div>
+						<img href="#" class="mx-auto d-block" style="height:200px; width:200px;" src="{{ $product->getGambar() }}">
+					</div>
 					<div class="text text-center pt-4">
-						<h3><a href="#">{{$product->nama_produk}}</a></h3>
-						<p>{{$product->description}}</p>
-						<p class="price"><span>@currency($product->harga)</span></p>
+						<h3><a href="#">{{ $product->nama_produk }}</a></h3>
+					<p>{{ $product->description }}</p>
+					<p class="price"><span>@currency($product->harga)</span></p>
 						<p><a href="{{route('login')}}" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
 					</div>
 				</div>

@@ -65,7 +65,7 @@
             <br><br><br>
             <table class="table align-items-center table-flush">
                 <thead class="thead-light">
-                  <tr>
+                  <tr align="center">
                     <th scope="col">Gambar</th>
                     <th scope="col">Nama Produk</th>
                     <th scope="col">Harga</th>
@@ -75,10 +75,10 @@
                 </thead>
                 <tbody>
                   @foreach($products as $product)
-                  <tr>
+                  <tr align="center">
                     <th scope="row">
                       <a href="/admin/detail_produk?product_id={{$product->id}}">
-                        <img src="../images/{{$product->gambar}}" alt="gambar_product" style="width:100px; height:100px">
+                        <img src="{{ $product->getGambar() }}" alt="gambar_product" style="width:100px; height:100px">
                       </a>
                     </th>
                     <th scope="row">
@@ -90,14 +90,27 @@
                     <td>
                       {{$product->stock}}
                     </td>
-                    <td colspan="3">
-                      <a href="/admin/detail_produk?product_id={{$product->id}}" class="btn btn-success btn-sm small d-inline">Edit</button>
+                    <td>
+                      <div class="btn-group-horizontal">
+                        <a class="btn btn-warning btn-lg" href="/admin/detail_produk?product_id={{$product->id}}">Edit</a>
+                        <a class="btn btn-danger btn-lg" href="{{ $product->id }}/delete" onclick="return confirm('Apakah Anda yakin ingin mengahpus data ini?')">Hapus</a>
+                        <a class="btn btn-info btn-lg" href="/admin/detail_produk?product_id={{$product->id}}">Detail</a>
+                      </div>
+                      {{-- <a href="/admin/detail_produk?product_id={{$product->id}}">
+                        <button class="btn btn-success btn-sm small d-inline">Edit</button>
+                      </a>
                       <form action="{{__('/admin/hapus_produk')}}" method="post">
                         @csrf
                         <input type="text" name="produk_id" value="{{$product->id}}" hidden>
                         <button type="submit" class="btn btn-danger btn-sm d-inline">Hapus</button>
                       </form>
-                      <a href="/admin/detail_produk?product_id={{$product->id}}">Selengkapnya</a>
+                      <a href="/admin/detail_produk?product_id={{$product->id}}">
+                        <button class="btn btn-warning btn-sm small d-inline"> Selengkapnya</button>
+                      </a> --}}
+                      {{-- <div class="btn-group-vertical">
+                        <a class="btn btn-warning btn-sm" href="/admin/detail_produk?product_id={{$product->id}}">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="barang/{{ $product->id }}/delete" onclick="return confirm('Apakah Anda yakin ingin mengahpus data ini?')">Hapus</a>
+                    </div> --}}
                     </td>
                   </tr>
                   @endforeach
